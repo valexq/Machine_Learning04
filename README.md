@@ -27,11 +27,11 @@ Machine_Learning04/
 │   ├── ejercicio1/
 │   │   ├── README.md
 │   │   ├── notebooks/
-│   │   └── src/
+│   │   └── data/
 │   └── ejercicio3/
 │       ├── README.md
 │       ├── notebooks/
-│       └── src/
+│       └── data/
 ├─ README.md
 ├─ .gitignore
 └── requirements.txt
