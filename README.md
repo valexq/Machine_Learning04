@@ -24,27 +24,14 @@ evaluación con métricas y visualización de resultados.
 
 ```text
 Machine_Learning04/
-├─ data/
-│  ├─ ejercicio1_student_grades/      
-│  └─ ejercicio3_amazon_reviews/
-├─ notebooks/
-│  ├─ ejercicio1/
-│  │  ├─ 01_eda_preprocesamiento.ipynb
-│  │  ├─ 02_modelado_metricas.ipynb
-│  │  └─ 03_reduccion_dimensionalidad.ipynb
-│  └─ ejercicio3/
-│     ├─ 01_eda_preprocesamiento_texto.ipynb
-│     ├─ 02_modelado_metricas.ipynb
-│     └─ 03_visualizacion_tsne.ipynb
-├─ src/
-│  ├─ ejercicio1/
-│  │  ├─ preprocessing.py
-│  │  ├─ train_models.py
-│  │  └─ utils_visualizacion.py
-│  └─ ejercicio3/
-│     ├─ text_preprocessing.py
-│     ├─ train_models.py
-│     └─ utils_visualizacion.py
+│   ├── ejercicio1/
+│   │   ├── README.md
+│   │   ├── notebooks/
+│   │   └── src/
+│   └── ejercicio3/
+│       ├── README.md
+│       ├── notebooks/
+│       └── src/
 ├─ README.md
 ├─ .gitignore
 └── requirements.txt
