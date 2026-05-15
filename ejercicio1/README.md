@@ -33,7 +33,7 @@ estudiantes a partir de variables académicas, personales y familiares.
 - Realizar un análisis exploratorio de datos para identificar distribuciones, correlaciones y patrones por subgrupos relevantes.
 - Construir una variable objetivo categórica de rendimiento a partir de la nota final `G3`.
 - Implementar un preprocesamiento completo que incluya imputación, estandarización y codificación de variables.
-- Entrenar y comparar modelos de clasificación supervisada como Regresión Logística, KNN y un tercer modelo adicional.
+- Entrenar y comparar tres modelos de clasificación supervisada: Regresión Logística, KNN y SVM.
 - Evaluar el desempeño de los modelos mediante métricas como Accuracy, Precision, Recall y F1-score.
 - Interpretar los resultados obtenidos y discutir sus implicaciones éticas en contextos educativos.
 
@@ -107,10 +107,15 @@ Este algoritmo puede capturar patrones locales no lineales, aunque depende fuert
 de la escala de las variables y puede verse afectado por la alta dimensionalidad generada 
 por la codificación de variables categóricas.
 
-#### Tercer modelo
+#### Support Vector Machine (SVM)
 
-En esta sección debe documentarse el tercer modelo utilizado en el ejercicio, ya sea **SVM** o 
-**Random Forest**, junto con su justificación teórica, ventajas, limitaciones y resultados obtenidos.
+SVM se utilizó como tercer modelo supervisado porque permite construir fronteras de decisión
+flexibles mediante el uso de kernels. En este ejercicio se aplicó un kernel RBF, adecuado cuando
+pueden existir relaciones no lineales entre las variables y las categorías de rendimiento.
+
+Su principal ventaja es que puede funcionar bien en espacios de alta dimensionalidad, como el
+generado después de aplicar One-Hot Encoding a las variables categóricas. Como limitación, es menos
+interpretable que la Regresión Logística y puede ser sensible a la selección de hiperparámetros.
 
 ## Métricas de evaluación
 
@@ -118,13 +123,13 @@ Los modelos se evaluaron mediante **Accuracy**, **Precision**, **Recall** y **F1
 métricas adecuadas para comparar clasificadores multiclase cuando interesa valorar tanto el
 porcentaje global de aciertos como el equilibrio del desempeño entre categorías.
 
-### Resultados actuales
+### Resultados obtenidos
 
 | Modelo | Accuracy | Precision | Recall | F1-score |
 |--------|----------|-----------|--------|----------|
 | Regresión Logística | 0.86 | 0.86 | 0.86 | 0.86 |
-| KNN | Completar | Completar | Completar | Completar |
-| Tercer modelo | Completar | Completar | Completar | Completar |
+| KNN | 0.66 | 0.68 | 0.66 | 0.65 |
+| SVM | 0.82 | 0.84 | 0.82 | 0.82 |
 
 ### Detalle por clase - Regresión Logística
 
@@ -139,6 +144,21 @@ con un Accuracy de 0.86 y un equilibrio razonable entre precisión y sensibilida
 El modelo identifica especialmente bien la clase `bajo` en términos de recall, 
 mientras que en la clase `medio` presenta un recall ligeramente menor, lo que sugiere una mayor
 dificultad para distinguir algunos casos intermedios.
+
+### Comparación entre modelos
+
+KNN fue el modelo con menor desempeño, con un Accuracy de 0.66 y un F1-score ponderado de 0.65.
+Aunque logra clasificar varios casos de rendimiento medio y alto, presenta confusiones importantes
+entre las clases `bajo` y `medio`, lo que indica que la cercanía local entre observaciones no separa
+las categorías de manera suficiente.
+
+SVM obtuvo un desempeño competitivo, con Accuracy de 0.82 y F1-score de 0.82. Este modelo reconoce
+bien los casos de rendimiento alto y medio, pero aún confunde algunos estudiantes de bajo rendimiento
+con la clase media.
+
+El mejor modelo fue la **Regresión Logística**, ya que obtuvo el mayor equilibrio general entre
+Accuracy, Precision, Recall y F1-score. Además, ofrece una interpretación más clara para explicar
+qué variables influyen en la predicción.
 
 ## Visualización con PCA
 
@@ -160,10 +180,13 @@ razonable utilizando variables académicas y de contexto. En particular, las not
 aparecen como señales muy fuertes del desempeño final, mientras que variables como ausencias, tiempo de
 estudio y fallos previos aportan información adicional relevante.
 
-La comparación entre modelos permite discutir si la estructura del problema parece más lineal 
-o más local/no lineal. Si KNN o el tercer modelo superan claramente a la Regresión Logística, 
-ello sugeriría que existen relaciones más complejas entre las variables; si el desempeño es similar, 
-la Regresión Logística se consolida como una alternativa especialmente valiosa por su interpretabilidad.
+La comparación entre modelos sugiere que la estructura del problema tiene una señal predictiva
+fuerte y relativamente lineal, principalmente asociada a las notas previas `G1` y `G2`. Por esta
+razón, la Regresión Logística logró superar a KNN y SVM en la partición de prueba utilizada.
+
+Aunque SVM puede capturar relaciones no lineales, no mejoró el desempeño de la Regresión Logística.
+KNN, por su parte, fue más afectado por el solapamiento entre clases y por la dimensionalidad generada
+tras codificar las variables categóricas.
 
 ## Implicaciones éticas
 
@@ -187,16 +210,16 @@ datos personales y académicos de los estudiantes.
 Ejercicio1/
 ├── README.md
 ├── notebooks/
-│   └── ejercicio1_rendimiento_estudiantes.ipynb
+│   └── Ejercicio1.ipynb
 └── data/
-    └── student-mat.csv
+    └── ejercicio01_student-grades.csv
 ```
 
 ## Cómo ejecutar
 
 1. Clonar el repositorio.
 2. Instalar las dependencias necesarias.
-3. Ejecutar el notebook principal del ejercicio 1.
+3. Ejecutar el notebook principal `notebooks/Ejercicio1.ipynb`.
 4. Revisar las secciones de EDA, preprocesamiento, modelado, métricas, PCA y conclusiones.
 
 Dependencias sugeridas:
@@ -206,3 +229,39 @@ pip install pandas numpy matplotlib seaborn scikit-learn jupyter
 ```
 
 ## Conclusiones
+
+El ejercicio muestra que sí es posible aproximarse al rendimiento académico de un estudiante usando
+datos disponibles sobre su trayectoria escolar, hábitos y contexto. Sin embargo, también deja claro
+que el rendimiento no depende de una sola variable ni puede entenderse únicamente como un resultado
+numérico. Detrás de cada registro hay condiciones familiares, rutinas de estudio, ausencias, apoyos
+recibidos y experiencias personales que influyen en el proceso educativo.
+
+El modelo con mejor desempeño fue la Regresión Logística, con Accuracy y F1-score ponderado de 0.86.
+Este resultado es importante porque demuestra que, para este conjunto de datos, un modelo relativamente
+sencillo e interpretable puede funcionar mejor que alternativas más complejas. No siempre el modelo más
+sofisticado es el más conveniente; en un contexto educativo también importa poder explicar por qué se
+produce una predicción y qué señales están influyendo en ella.
+
+Las variables más fuertes fueron las notas previas `G1` y `G2`, lo cual tiene sentido: el desempeño
+anterior suele ser una señal directa del desempeño final. Aun así, variables como las ausencias, los
+fallos previos y el tiempo de estudio aportan información adicional que ayuda a comprender mejor el
+perfil de cada estudiante. Esto sugiere que el modelo no solo aprende una calificación, sino una
+combinación de factores académicos y de contexto.
+
+La comparación entre modelos también fue útil. SVM obtuvo un rendimiento competitivo, pero no superó a
+la Regresión Logística. KNN tuvo más dificultades, especialmente al separar estudiantes de rendimiento
+bajo y medio. Esto coincide con la visualización mediante PCA, donde se observa que las categorías no
+forman grupos totalmente separados. En la práctica, esto es esperable: el rendimiento académico suele
+moverse en una escala gradual, y no siempre existe una frontera clara entre un estudiante de nivel bajo
+y uno de nivel medio.
+
+Desde una perspectiva humana y ética, este tipo de modelo debe usarse como una herramienta de apoyo,
+no como una forma de etiquetar estudiantes. Una predicción de bajo rendimiento no debería interpretarse
+como una sentencia, sino como una alerta para conversar, acompañar y ofrecer refuerzos a tiempo. El valor
+real del análisis está en ayudar a tomar mejores decisiones pedagógicas, no en reemplazar el criterio de
+docentes, tutores o instituciones.
+
+Como trabajo futuro, sería recomendable probar validación cruzada, ajustar hiperparámetros y evaluar el
+modelo con nuevos datos para comprobar si mantiene su desempeño. También sería útil construir una versión
+de alerta temprana que no dependa tanto de `G1` y `G2`, especialmente si se quiere intervenir antes de que
+el estudiante ya tenga varias calificaciones acumuladas.

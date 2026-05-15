@@ -59,7 +59,7 @@ Los modelos evaluados fueron:
 
 - Regresión Logística
 - K-Nearest Neighbors (KNN)
-- SVM o Random Forest
+- SVM
 
 Las métricas utilizadas fueron:
 
@@ -92,14 +92,12 @@ También se aplicó t-SNE para visualizar agrupamientos de reseñas en el espaci
 ## Resultados principales
 
 ### Ejercicio 1
-- Modelo con mejor desempeño: [completar]
-- Métrica principal obtenida: [completar]
-- Hallazgo relevante: [completar]
+- Modelo con mejor desempeño: Regresión Logística
+- Métrica principal obtenida: Accuracy 0.86 y F1-score 0.86
+- Hallazgo relevante: las notas previas `G1` y `G2` fueron las señales más fuertes para predecir el rendimiento final.
 
 ### Ejercicio 3
-- Modelo con mejor desempeño: [completar]
-- Métrica principal obtenida: [completar]
-- Hallazgo relevante: [completar]
+- Pendiente de actualización por los responsables del ejercicio 3.
 
 ## Cómo ejecutar el proyecto
 
@@ -110,7 +108,7 @@ git clone https://github.com/valexq/Machine_Learning04.git
 
 2. Ingresar a la carpeta del proyecto:
 ```bash
-cd repositorio
+cd Machine_Learning04
 ```
 
 3. Instalar dependencias:
@@ -118,7 +116,7 @@ cd repositorio
 pip install -r requirements.txt
 ```
 
-4. Ejecutar los notebooks o scripts correspondientes a cada ejercicio desde la carpeta `notebooks/` o `src/`.
+4. Ejecutar los notebooks correspondientes desde la carpeta `notebooks/` de cada ejercicio.
 
 ## Tecnologías utilizadas
 
@@ -133,4 +131,4 @@ pip install -r requirements.txt
 
 ## Video de sustentación
 
-Enlace al video: [Agregar enlace]
+Enlace al video: pendiente de agregar cuando el grupo tenga la grabación final.
