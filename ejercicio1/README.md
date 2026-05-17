@@ -230,38 +230,16 @@ pip install pandas numpy matplotlib seaborn scikit-learn jupyter
 
 ## Conclusiones
 
-El ejercicio muestra que sí es posible aproximarse al rendimiento académico de un estudiante usando
-datos disponibles sobre su trayectoria escolar, hábitos y contexto. Sin embargo, también deja claro
-que el rendimiento no depende de una sola variable ni puede entenderse únicamente como un resultado
-numérico. Detrás de cada registro hay condiciones familiares, rutinas de estudio, ausencias, apoyos
-recibidos y experiencias personales que influyen en el proceso educativo.
+Los resultados muestran que es posible aproximarse al rendimiento académico de un estudiante utilizando variables académicas y de contexto. Las notas
+previas `G1` y `G2` se confirman como los predictores más fuertes del desempeño final, mientras que ausencias, fallos previos y tiempo de estudio
+aportan información complementaria sobre el perfil de cada estudiante.
 
-El modelo con mejor desempeño fue la Regresión Logística, con Accuracy y F1-score ponderado de 0.86.
-Este resultado es importante porque demuestra que, para este conjunto de datos, un modelo relativamente
-sencillo e interpretable puede funcionar mejor que alternativas más complejas. No siempre el modelo más
-sofisticado es el más conveniente; en un contexto educativo también importa poder explicar por qué se
-produce una predicción y qué señales están influyendo en ella.
+En este ejercicio, la Regresión Logística obtuvo el mejor equilibrio entre Accuracy y F1-score, superando a KNN y a SVM a pesar de ser un modelo más
+sencillo. Esto sugiere que, para este dataset, una frontera de decisión principalmente lineal es suficiente y que la interpretabilidad del modelo
+puede ser una ventaja importante frente a alternativas más complejas.
 
-Las variables más fuertes fueron las notas previas `G1` y `G2`, lo cual tiene sentido: el desempeño
-anterior suele ser una señal directa del desempeño final. Aun así, variables como las ausencias, los
-fallos previos y el tiempo de estudio aportan información adicional que ayuda a comprender mejor el
-perfil de cada estudiante. Esto sugiere que el modelo no solo aprende una calificación, sino una
-combinación de factores académicos y de contexto.
-
-La comparación entre modelos también fue útil. SVM obtuvo un rendimiento competitivo, pero no superó a
-la Regresión Logística. KNN tuvo más dificultades, especialmente al separar estudiantes de rendimiento
-bajo y medio. Esto coincide con la visualización mediante PCA, donde se observa que las categorías no
-forman grupos totalmente separados. En la práctica, esto es esperable: el rendimiento académico suele
-moverse en una escala gradual, y no siempre existe una frontera clara entre un estudiante de nivel bajo
-y uno de nivel medio.
-
-Desde una perspectiva humana y ética, este tipo de modelo debe usarse como una herramienta de apoyo,
-no como una forma de etiquetar estudiantes. Una predicción de bajo rendimiento no debería interpretarse
-como una sentencia, sino como una alerta para conversar, acompañar y ofrecer refuerzos a tiempo. El valor
-real del análisis está en ayudar a tomar mejores decisiones pedagógicas, no en reemplazar el criterio de
-docentes, tutores o instituciones.
-
-Como trabajo futuro, sería recomendable probar validación cruzada, ajustar hiperparámetros y evaluar el
-modelo con nuevos datos para comprobar si mantiene su desempeño. También sería útil construir una versión
-de alerta temprana que no dependa tanto de `G1` y `G2`, especialmente si se quiere intervenir antes de que
-el estudiante ya tenga varias calificaciones acumuladas.
+Desde una perspectiva ética, este tipo de modelos debe entenderse como una herramienta de apoyo y alerta temprana, no como un mecanismo para etiquetar
+o limitar a los estudiantes. Las predicciones de bajo rendimiento deberían utilizarse para guiar acciones de acompañamiento y refuerzo, siempre bajo
+supervisión humana y con atención a posibles sesgos en los datos originales.
+Como trabajo futuro sería útil aplicar validación cruzada, ajustar hiperparámetros y explorar versiones del modelo que dependan menos de `G1`
+y `G2`, para poder intervenir en etapas más tempranas del proceso educativo.
