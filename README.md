@@ -131,4 +131,4 @@ pip install -r requirements.txt
 
 ## Video de sustentación
 
-Enlace al video: pendiente de agregar cuando el grupo tenga la grabación final.
+https://drive.google.com/file/d/1zJ_kqdZ4Yf_JgDoZJ2I44iYj69fhlt68/view?usp=sharing
